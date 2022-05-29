@@ -1,5 +1,7 @@
 const express = require('express')
 const app = express();
+// NEED TO IMPLEMENT WITH .env file const connectDB = require('.db/connect')
+require('dotenv').config()
 const notFound = require('./middleware/not-found')
 const errorHandlerMiddleware = require('./middleware/error-handler')
 
