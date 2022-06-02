@@ -5,7 +5,7 @@ const IssueSchema = new mongoose.Schema({
     type: String,
     required: [true, 'must provide project title'],
     trim: true,
-    maxlength: [30, 'project name cannot be more than 30 characters']
+    maxLength: [30, 'project name cannot be more than 30 characters']
   },
   completed: {
     type: Boolean,
@@ -15,7 +15,7 @@ const IssueSchema = new mongoose.Schema({
     type: String,
     required: [true, 'must provide a succinct description of the project'],
     trim: true,
-    maxlength: [120, 'project description cannot be more than 120 characters']
+    maxLength: [120, 'project description cannot be more than 120 characters']
   },
   createdAt: {
     type: Date,
@@ -25,7 +25,7 @@ const IssueSchema = new mongoose.Schema({
     type: String,
     required: [true, 'must provide issue title'],
     trim: true,
-    maxlength: [30, 'project name cannot be more than 30 characters']
+    maxLength: [30, 'project name cannot be more than 30 characters']
   },
   priority: {
     type: String,
@@ -57,10 +57,7 @@ const IssueSchema = new mongoose.Schema({
   },
   type: {
     type: String,
-    enum: {
-      values: ['bug', 'feature', 'issue'],
-      message: `{VALUE} is not supported`
-    }
+    trim: true
   }
 })
 

@@ -9,7 +9,7 @@ const getAllIssues = asyncWrapper(async (req, res) => {
 
 const createIssue = asyncWrapper(async (req, res) => {
   const issue = await Issue.create(req.body)
-  res.status(201).json({issue})
+  res.status(201).json({ issue })
 })
 
 const getIssue = asyncWrapper(async (req, res) => {
