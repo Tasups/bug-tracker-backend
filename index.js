@@ -3,7 +3,7 @@ const app = express();
 const issues = require('./routes/issues')
 const connectDB = require('./db/connect')
 require('dotenv').config()
-const notFound = require('./middleware/not-found')
+// this was causing constant errors on postman   const notFound = require('./middleware/not-found')
 const errorHandlerMiddleware = require('./middleware/error-handler')
 
 
@@ -12,7 +12,7 @@ const errorHandlerMiddleware = require('./middleware/error-handler')
 app.use(express.json())
 
 // MIDDLEWARE
-app.use(notFound)
+// this was causing constant errors on postman   app.use(notFound)
 app.use(errorHandlerMiddleware)
 
 // ROUTES

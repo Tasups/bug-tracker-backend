@@ -1,6 +1,6 @@
 const mongoose = require('mongoose')
 
-const issueSchema = new mongoose.Schema({
+const IssueSchema = new mongoose.Schema({
   projectTitle: {
     type: String,
     required: [true, 'must provide project title'],
@@ -64,4 +64,4 @@ const issueSchema = new mongoose.Schema({
   }
 })
 
-module.exports = mongoose.model('Issue', issueSchema)
+module.exports = mongoose.model('Issue', IssueSchema)
