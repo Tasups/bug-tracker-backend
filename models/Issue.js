@@ -25,7 +25,7 @@ const IssueSchema = new mongoose.Schema({
     type: String,
     required: [true, 'must provide issue title'],
     trim: true,
-    maxLength: [30, 'project name cannot be more than 30 characters']
+    maxLength: [30, 'issue title cannot be more than 30 characters']
   },
   priority: {
     type: String,
