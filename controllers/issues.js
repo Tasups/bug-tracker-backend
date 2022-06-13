@@ -12,7 +12,7 @@ const createIssue = asyncWrapper(async (req, res) => {
   res.status(201).json({ issue })
 })
 
-const getIssue = asyncWrapper(async (req, res) => {
+const getIssue = asyncWrapper(async (req, res, next) => {
   const { id: issueID} = req.params
   const issue = await Issue.findOne({ _id: issueID })
   if (!issue) {

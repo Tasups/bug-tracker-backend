@@ -44,7 +44,7 @@ const IssueSchema = new mongoose.Schema({
   developer: {
     type: String,
     enum: {
-      values: ['Jason W.', 'Ada L.', 'Alan T.'],
+      values: ['Jason Whisnant', 'Ada Lovelace', 'Alan Turing'],
       message: `{VALUE} is not supported`
     }
   },
@@ -57,7 +57,10 @@ const IssueSchema = new mongoose.Schema({
   },
   type: {
     type: String,
-    trim: true
+    enum: {
+      values: ['feature', 'bug'],
+      message: `{VALUE} is not supported`
+    }
   }
 })
 
