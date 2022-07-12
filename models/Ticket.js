@@ -1,27 +1,7 @@
 const mongoose = require('mongoose')
 
-const IssueSchema = new mongoose.Schema({
-  projectTitle: {
-    type: String,
-    required: [true, 'must provide project title'],
-    trim: true,
-    maxLength: [30, 'project name cannot be more than 30 characters']
-  },
-  completed: {
-    type: Boolean,
-    default: false
-  },
-  description: {
-    type: String,
-    required: [true, 'must provide a succinct description of the project'],
-    trim: true,
-    maxLength: [120, 'project description cannot be more than 120 characters']
-  },
-  createdAt: {
-    type: Date,
-    default: Date.now()
-  },
-  issueTitle: {
+const ticketSchema = new mongoose.Schema({
+  ticketTitle: {
     type: String,
     required: [true, 'must provide issue title'],
     trim: true,
@@ -41,7 +21,7 @@ const IssueSchema = new mongoose.Schema({
       message: `{VALUE} is not supported`
     }
   },
-  developer: {
+  contributor: {
     type: String,
     enum: {
       values: ['Jason Whisnant', 'Ada Lovelace', 'Alan Turing'],
@@ -61,7 +41,18 @@ const IssueSchema = new mongoose.Schema({
       values: ['feature', 'bug'],
       message: `{VALUE} is not supported`
     }
+  },
+  completed: {
+    type: Boolean,
+    default: false
+  },
+  createdAt: {
+    type: Date,
+    default: Date.now()
+  },
+  creator: {
+    type: mongoose.Types.ObjectId, required: true, ref: 'Project'
   }
 })
 
-module.exports = mongoose.model('Issue', IssueSchema)
+module.exports = mongoose.model('Ticket', ticketSchema)

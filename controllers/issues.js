@@ -1,51 +1,51 @@
 const asyncWrapper = require('../middleware/async')
 const { createCustomError } = require('../errors/custom-error')
-const Issue = require('../models/Issue')
+const Project = require('../models/Issue')
 
-const getAllIssues = asyncWrapper(async (req, res) => {
-  const issues = await Issue.find({})
-  res.status(200).json({ issues })
+const getAllProjects = asyncWrapper(async (req, res) => {
+  const projects = await Project.find({})
+  res.status(200).json({ projects })
 })
 
-const createIssue = asyncWrapper(async (req, res) => {
-  const issue = await Issue.create(req.body)
-  res.status(201).json({ issue })
+const createProject = asyncWrapper(async (req, res) => {
+  const project = await Project.create(req.body)
+  res.status(201).json({ project })
 })
 
 const getIssue = asyncWrapper(async (req, res, next) => {
-  const { id: issueID} = req.params
-  const issue = await Issue.findOne({ _id: issueID })
-  if (!issue) {
-    return next(createCustomError(`No issue with id: ${issueID}`, 404))
+  const { id: projectID} = req.params
+  const project = await Project.findOne({ _id: projectID })
+  if (!project) {
+    return next(createCustomError(`No issue with id: ${projectID}`, 404))
   }
-  res.status(200).json({ issue })
+  res.status(200).json({ project })
 })
 
-const deleteIssue = asyncWrapper(async (req, res, next) => {
-  const { id: issueID } = req.params
-  const issue = await Issue.findOneAndDelete({ _id: issueID })
-  if (!issue) {
-    return next(createCustomError(`No issue with id: ${issueID}`, 404))
+const deleteProject = asyncWrapper(async (req, res, next) => {
+  const { id: projectID } = req.params
+  const project = await Project.findOneAndDelete({ _id: projectID })
+  if (!project) {
+    return next(createCustomError(`No issue with id: ${projectID}`, 404))
   }  
-  res.status(200).json({ issue })
+  res.status(200).json({ project })
 })
 
-const updateIssue = asyncWrapper(async (req, res, next) => {
-  const { id: issueID } = req.params
-  const issue = await Issue.findOneAndUpdate({ _id: issueID }, req.body, {
+const updateProject = asyncWrapper(async (req, res, next) => {
+  const { id: projectID } = req.params
+  const project = await Project.findOneAndUpdate({ _id: projectID }, req.body, {
     new: true,
     runValidators: true
   })
-  if (!issue) {
-    return next(createCustomError(`No issue with id: ${issueID}`, 404))
+  if (!project) {
+    return next(createCustomError(`No issue with id: ${projectID}`, 404))
   }
-  res.status(200).json({ issue })
+  res.status(200).json({ project })
 })
 
 module.exports = {
-  getAllIssues,
-  createIssue,
+  getAllProjects,
+  createProject,
   getIssue,
-  deleteIssue,
-  updateIssue
+  deleteProject,
+  updateProject
 }
