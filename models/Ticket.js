@@ -1,11 +1,18 @@
 const mongoose = require('mongoose')
 
 const ticketSchema = new mongoose.Schema({
-  ticketTitle: {
+  title: {
     type: String,
     required: [true, 'must provide issue title'],
     trim: true,
     maxLength: [30, 'issue title cannot be more than 30 characters']
+  },
+  description: {
+    type: String,
+    required: [true, 'must provide description'],
+    trim: true, 
+    minLength: [16, 'description cannot be less than 16 characters'],
+    maxLength: [50, 'description cannot be more than 50 characters']
   },
   priority: {
     type: String,
@@ -14,19 +21,11 @@ const ticketSchema = new mongoose.Schema({
       message: `{VALUE} is not supported`
     }
   },
-  issuer: {
+  author: {
     type: String,
-    enum: {
-      values: ['Admin', 'Lead', 'QA'],
-      message: `{VALUE} is not supported`
-    }
-  },
-  contributor: {
-    type: String,
-    enum: {
-      values: ['Jason Whisnant', 'Ada Lovelace', 'Alan Turing'],
-      message: `{VALUE} is not supported`
-    }
+    required: true,
+    trim: true,
+    maxLength: [16, 'author cannot be more than 16 characters']
   },
   status: {
     type: String,
@@ -42,14 +41,18 @@ const ticketSchema = new mongoose.Schema({
       message: `{VALUE} is not supported`
     }
   },
-  completed: {
-    type: Boolean,
-    default: false
+  eta: {
+    type: String,
+    enum: {
+      values: ['one day', 'one week', 'one month', 'one quarter'],
+      message: `{VALUE} is not supported`
+    }
   },
-  createdAt: {
-    type: Date,
-    default: Date.now()
-  },
+  // consider putting this one in to make the eta have a starting date that can be referenced
+  // createdAt: {
+  //   type: Date,
+  //   default: Date.now()
+  // },
   creator: {
     type: mongoose.Types.ObjectId, required: true, ref: 'Project'
   }

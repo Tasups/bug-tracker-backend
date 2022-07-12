@@ -12,7 +12,7 @@ const createProject = asyncWrapper(async (req, res) => {
   res.status(201).json({ project })
 })
 
-const getIssue = asyncWrapper(async (req, res, next) => {
+const getProject = asyncWrapper(async (req, res, next) => {
   const { id: projectID} = req.params
   const project = await Project.findOne({ _id: projectID })
   if (!project) {
@@ -45,7 +45,7 @@ const updateProject = asyncWrapper(async (req, res, next) => {
 module.exports = {
   getAllProjects,
   createProject,
-  getIssue,
+  getProject,
   deleteProject,
   updateProject
 }

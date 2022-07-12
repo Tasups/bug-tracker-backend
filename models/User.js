@@ -16,7 +16,18 @@ const userSchema = new mongoose.Schema({
     required: true,
     minLength: [8, 'password must be at least 8 characters']
   },
-  tickets: [{ type: mongoose.Types.ObjectID, required: true, ref: 'Ticket' }]
+  tickets: [
+    { 
+      type: mongoose.Types.ObjectID, 
+      required: true, 
+      ref: 'Ticket' 
+    }], 
+  projects: [
+    { 
+      type: mongoose.Types.ObjectID, 
+      required: true, 
+      ref: 'Project'
+    }],
 })
 
 module.exports = mongoose.model('User', userSchema)
