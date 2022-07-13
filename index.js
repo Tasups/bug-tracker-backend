@@ -1,6 +1,6 @@
 const express = require('express')
 const app = express();
-const issues = require('./routes/issues')
+const issues = require('./routes/projects')
 const connectDB = require('./db/connect')
 require('dotenv').config()
 // this was causing constant errors on postman   const notFound = require('./middleware/not-found')

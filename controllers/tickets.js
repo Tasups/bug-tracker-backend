@@ -26,32 +26,33 @@ const createTicket = asyncWrapper(async (req, res, next) => {
     sess.startTransaction()
     await createdTicket.save({ session: sess })
     user.tickets.push(createdTicket)
-    await user.save({ session: sess})
+    await user.save({ session: sess })
     await sess.commitTransaction()
-  } catch(err) {
+  } catch (err) {
+    console.log(err)
     return next(createCustomError(`Creating ticket failed. Please try again.`, 500))
   }
   res.status(201).json({ ticket: createdTicket })
 })
 
-const getProject = asyncWrapper(async (req, res, next) => {
-  const { id: projectID} = req.params
-  const project = await Project.findOne({ _id: projectID })
-  if (!project) {
-    return next(createCustomError(`No project with id: ${projectID}`, 404))
+const getTicket = asyncWrapper(async (req, res, next) => {
+  const { id: ticketID} = req.params
+  const ticket = await Project.findOne({ _id: ticketID });
+  if (!ticket) {
+    return next(createCustomError(`No ticket with id: ${ticketID}`, 404));
   }
-  res.status(200).json({ project })
+  res.status(200).json({ ticket });
 })
 
-const deleteProject = asyncWrapper(async (req, res, next) => {
-  const { id: projectID } = req.params
-  const project = await Project.findOneAndDelete({ _id: projectID })
-  if (!project) {
-    return next(createCustomError(`No project with id: ${projectID}`, 404))
+const deleteTicket = asyncWrapper(async (req, res, next) => {
+  const { id: ticketID } = req.params
+  const ticket = await Project.findOneAndDelete({ _id: ticketID });
+  if (!ticket) {
+    return next(createCustomError(`No ticket with id: ${ticketID}`, 404));
   }  
-  res.status(200).json({ project })
+  res.status(200).json({ ticket });
 })
-
+/* THIS IS IF I WANT TO UPDATE A TICKET
 const updateProject = asyncWrapper(async (req, res, next) => {
   const { id: projectID } = req.params
   const project = await Project.findOneAndUpdate({ _id: projectID }, req.body, {
@@ -63,11 +64,11 @@ const updateProject = asyncWrapper(async (req, res, next) => {
   }
   res.status(200).json({ project })
 })
+*/
 
 module.exports = {
   getTicketsByProjectId,
-  createProject,
-  getProject,
-  deleteProject,
-  updateProject
+  createTicket,
+  getTicket,
+  deleteTicket,
 }
