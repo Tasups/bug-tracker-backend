@@ -13,7 +13,7 @@ const createProject = asyncWrapper(async (req, res) => {
   res.json({ project: project.toObject({ getters: true }) });
 })
 // THIS WORKS
-const getProject = asyncWrapper(async (req, res, next) => {
+const getProjectById = asyncWrapper(async (req, res, next) => {
   const { id: projectID} = req.params
   const project = await Project.findOne({ _id: projectID })
   if (!project) {

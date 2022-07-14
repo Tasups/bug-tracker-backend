@@ -4,11 +4,11 @@ const router = express.Router()
 const {
   getAllProjects,
   createProject,
-  getProject,
+  getProjectById,
 } = require('../controllers/projects')
 
 router.route("/dashboard").get(getAllProjects).post(createProject);
-router.route('/dashboard/:id').get(getProject)
+router.route('/dashboard/:id').get(getProjectById)
 
 module.exports = router
 

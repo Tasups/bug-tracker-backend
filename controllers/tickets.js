@@ -57,7 +57,7 @@ const createTicket = asyncWrapper(async (req, res) => {
 //   //res.status(201).json({ ticket: createdTicket })
 // })
 
-const getTicket = asyncWrapper(async (req, res, next) => {
+const getTicketById = asyncWrapper(async (req, res, next) => {
   const { id: ticketID} = req.params
   const ticket = await Project.findOne({ _id: ticketID });
   if (!ticket) {
@@ -91,6 +91,6 @@ const updateProject = asyncWrapper(async (req, res, next) => {
 module.exports = {
   getTicketsByProjectId,
   createTicket,
-  getTicket,
+  getTicketById,
   deleteTicket,
 }
