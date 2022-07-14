@@ -7,7 +7,7 @@ const ProjectSchema = new mongoose.Schema({
     trim: true,
     maxLength: [30, 'project name cannot be more than 30 characters']
   },
-  projectDescription: {
+  description: {
     type: String,
     required: [true, 'must provide a succinct description of the project'],
     trim: true,
@@ -18,11 +18,15 @@ const ProjectSchema = new mongoose.Schema({
     default: Date.now()
   },
   contributors: {
-    type: mongoose.Types.ObjectId, required: true, ref: 'User'
+    type: String,
+    required: [true, 'project must have at least one contributor'],
+    maxLength: [20, 'contributor cannot be more than 20 characters']
   },
-  tickets: {
-    type: mongoose.Types.ObjectId, required: true, ref: 'Ticket'
-  }
+  tickets: [
+    {
+      type: mongoose.Types.ObjectId, required: true, ref: 'Ticket'
+    }
+  ]
 })
 
 module.exports = mongoose.model('Project', ProjectSchema)
