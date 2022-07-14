@@ -5,7 +5,6 @@ const {
   getAllProjects,
   createProject,
   getProject,
-  deleteProject
 } = require('../controllers/projects')
 
 router.route("/dashboard").get(getAllProjects).post(createProject);
