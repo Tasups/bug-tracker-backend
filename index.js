@@ -1,6 +1,7 @@
 const express = require('express')
 const app = express();
 const projects = require('./routes/projects')
+const tickets = require('./routes/tickets')
 const connectDB = require('./db/connect')
 require('dotenv').config()
 // this was causing constant errors on postman   const notFound = require('./middleware/not-found')
@@ -17,6 +18,7 @@ app.use(errorHandlerMiddleware)
 
 // ROUTES
 app.use('/api/v1/projects', projects)
+app.use('/api/vi/tickets', tickets);
 
 const port = process.env.PORT || 5000
 

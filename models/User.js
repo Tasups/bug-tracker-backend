@@ -18,16 +18,23 @@ const userSchema = new mongoose.Schema({
   },
   tickets: [
     { 
-      type: mongoose.Types.ObjectID, 
+      type: mongoose.Types.ObjectId, 
       required: true, 
       ref: 'Ticket' 
-    }], 
+    }
+  ], 
   projects: [
     { 
-      type: mongoose.Types.ObjectID, 
+      type: mongoose.Types.ObjectId, 
       required: true, 
       ref: 'Project'
-    }],
+    }
+  ],
+  tickets: [
+    {
+      type: mongoose.Types.ObjectId, required: true, ref: 'Ticket'
+    }
+  ]
 })
 
 module.exports = mongoose.model('User', userSchema)

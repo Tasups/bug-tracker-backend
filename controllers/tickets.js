@@ -12,28 +12,50 @@ const getTicketsByProjectId = asyncWrapper(async (req, res) => {
   res.status(200).json({ tickets })
 })
 
-const createTicket = asyncWrapper(async (req, res, next) => {
-  const { title, description, priority, author, status, type, eta, creator } = req.body
-  const createdTicket = new Ticket({
-    title, description, priority, author, status, type, eta, creator
-  })
-  const user = await User.findById(creator)
-  if(!user) {
-    return next(createCustomError(`No user with id: ${creator}`, 404))
-  }
-  try {
-    const sess = await mongoose.startSession()
-    sess.startTransaction()
-    await createdTicket.save({ session: sess })
-    user.tickets.push(createdTicket)
-    await user.save({ session: sess })
-    await sess.commitTransaction()
-  } catch (err) {
-    console.log(err)
-    return next(createCustomError(`Creating ticket failed. Please try again.`, 500))
-  }
-  res.status(201).json({ ticket: createdTicket })
-})
+const createTicket = asyncWrapper(async (req, res) => {
+  const ticket = await Ticket.create(req.body);
+  res.json({ ticket: ticket.toObject({ getters: true }) });
+});
+
+// const createTicket = asyncWrapper(async (req, res, next) => {
+//   const {
+//     title,
+//     description,
+//     priority,
+//     author,
+//     status,
+//     type,
+//     eta,
+//     creator,
+//   } = req.body;
+//   const createdTicket = new Ticket({
+//     title,
+//     description,
+//     priority,
+//     author,
+//     status,
+//     type,
+//     eta,
+//     creator,
+//   });
+//   const user = await User.findById(creator)
+//   if(!user) {
+//     return next(createCustomError(`No user with id: ${creator}`, 404))
+//   }
+//   try {
+//     const sess = await mongoose.startSession()
+//     sess.startTransaction()
+//     await createdTicket.save({ session: sess })
+//     user.tickets.push(createdTicket)
+//     await user.save({ session: sess })
+//     await sess.commitTransaction()
+//   } catch (err) {
+//     console.log(err)
+//     return next(createCustomError(`Creating ticket failed. Please try again.`, 500))
+//   }
+//   res.json({ ticket: createdTicket.toObject({ getters: true }) });
+//   //res.status(201).json({ ticket: createdTicket })
+// })
 
 const getTicket = asyncWrapper(async (req, res, next) => {
   const { id: ticketID} = req.params
