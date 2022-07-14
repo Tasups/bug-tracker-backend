@@ -4,10 +4,13 @@ const router = express.Router()
 const {
   getTicketsByProjectId,
   createTicket,
-  getTicket,
+  getTicketById,
+  // DELETE MAY BECOME AN ARCHIVE FUCNTION INSTEAD
   deleteTicket
 } = require('../controllers/tickets')
 
-router.route("/projectboard").get(getTicketsByProjectId).get(getTicket).post(createTicket).delete(deleteTicket)
+// THIS ID MAY NOT BE THE CORRECT ONE, IT MAY BE JUST id
+router.route("/projectboard/:pid").get(getTicketsByProjectId).post(createTicket)
+router.route('/projectboard/:pid/:tid').get(getTicketById).delete(deleteTicket)
 
 module.exports = router

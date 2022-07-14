@@ -44,7 +44,7 @@ const createComment = asyncWrapper(async (req, res, next) => {
   res.status(201).json({ comment: createdComment });
 });
 
-const getComment = asyncWrapper(async (req, res, next) => {
+const getCommentById = asyncWrapper(async (req, res, next) => {
   const { id: commentID } = req.params;
   const comment = await Comment.findOne({ _id: commentID });
   if (!comment) {
@@ -78,6 +78,6 @@ const updateComment = asyncWrapper(async (req, res, next) => {
 module.exports = {
   getAllComments,
   createComment,
-  getComment,
+  getCommentById,
   deleteComment,
 };
