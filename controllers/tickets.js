@@ -18,6 +18,7 @@ const createTicket = asyncWrapper(async (req, res) => {
 });
 
 // const createTicket = asyncWrapper(async (req, res, next) => {
+//   const projectId = req.params.id
 //   const {
 //     title,
 //     description,
@@ -42,6 +43,10 @@ const createTicket = asyncWrapper(async (req, res) => {
 //   if(!user) {
 //     return next(createCustomError(`No user with id: ${creator}`, 404))
 //   }
+//   const project = await Project.findById(projectId)
+//   if(!project) {
+//     return next(createCustomError(`No project with id: ${projectID}`, 404))
+//   }  
 //   try {
 //     const sess = await mongoose.startSession()
 //     sess.startTransaction()
