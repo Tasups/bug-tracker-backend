@@ -46,7 +46,7 @@ const updateProject = asyncWrapper(async (req, res, next) => {
 module.exports = {
   getAllProjects,
   createProject,
-  getProject,
+  getProjectById,
   deleteProject,
   updateProject
 }

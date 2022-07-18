@@ -7,7 +7,7 @@ const Ticket = require('../models/Ticket');
 const mongoose = require("mongoose");
 
 // get all comments
-const getAllComments = asyncWrapper(async (req, res) => {
+const getCommentsByTicketId = asyncWrapper(async (req, res) => {
   const projectId = req.params.id; 
   const comments = await Ticket.findById(projectId).populate("comments");
   res.status(200).json({ comments });
@@ -76,7 +76,7 @@ const updateComment = asyncWrapper(async (req, res, next) => {
 */
 
 module.exports = {
-  getAllComments,
+  getCommentsByTicketId,
   createComment,
   getCommentById,
   deleteComment,
