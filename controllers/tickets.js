@@ -48,6 +48,8 @@ const createTicket = asyncWrapper(async (req, res) => {
 //     await createdTicket.save({ session: sess })
 //     user.tickets.push(createdTicket)
 //     await user.save({ session: sess })
+//     project.tickets.push(createdTicket)
+//     await project.save({ session: sess })
 //     await sess.commitTransaction()
 //   } catch (err) {
 //     console.log(err)
@@ -58,7 +60,7 @@ const createTicket = asyncWrapper(async (req, res) => {
 // })
 
 const getTicketById = asyncWrapper(async (req, res, next) => {
-  const { id: ticketID} = req.params
+  const { id: ticketID } = req.params
   const ticket = await Project.findOne({ _id: ticketID });
   if (!ticket) {
     return next(createCustomError(`No ticket with id: ${ticketID}`, 404));
