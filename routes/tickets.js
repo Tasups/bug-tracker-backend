@@ -14,3 +14,4 @@ router.route("/projectboard/:pid").get(getTicketsByProjectId).post(createTicket)
 router.route('/projectboard/:pid/:tid').get(getTicketById).delete(deleteTicket)
 
 module.exports = router
+

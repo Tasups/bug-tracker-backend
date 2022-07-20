@@ -56,7 +56,7 @@ const ticketSchema = new mongoose.Schema({
   creator: [
     {
       type: mongoose.Types.ObjectId,
-      required: true,
+      //required: true, Change back when users are implemented
       ref: "Project",
     },
   ],
