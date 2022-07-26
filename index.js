@@ -18,11 +18,7 @@ app.use(errorHandlerMiddleware)
 
 // ROUTES
 app.use('/api/v1/projects', projects)
-<<<<<<< HEAD
 app.use('/api/v1/projects', tickets)
-=======
-app.use('/api/v1/tickets', tickets);
->>>>>>> db9845e9a1d0ae622badf2490fb93e4e141d4f22
 
 const port = process.env.PORT || 5000
 
