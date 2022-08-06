@@ -75,9 +75,10 @@ const getTicketById = asyncWrapper(async (req, res, next) => {
   res.status(200).json({ ticket });
 })
 
+// THIS WORKS!!! YAY!!! FORGOT TO USE PID INSTEAD OF ID, VERY NOTEWORTHY!!!
 const deleteTicket = asyncWrapper(async (req, res, next) => {
-  const { id: ticketID } = req.params
-  const ticket = await Project.findOneAndDelete({ _id: ticketID });
+  const { tid: ticketID } = req.params
+  const ticket = await Ticket.findOneAndDelete({ _id: ticketID });
   if (!ticket) {
     return next(createCustomError(`No ticket with id: ${ticketID}`, 404));
   }  
