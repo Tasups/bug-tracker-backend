@@ -60,6 +60,13 @@ const ticketSchema = new mongoose.Schema({
       ref: "Project",
     },
   ],
+  comments: [
+    {
+      type: mongoose.Types.ObjectId,
+      required: true,
+      ref: "Comment",
+    },
+  ],
 });
 
 module.exports = mongoose.model('Ticket', ticketSchema)

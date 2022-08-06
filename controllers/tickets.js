@@ -12,11 +12,6 @@ const getTicketsByProjectId = asyncWrapper(async (req, res) => {
   res.status(200).json({ tickets })
 })
 
-// const createTicket = asyncWrapper(async (req, res) => {
-//   const ticket = await Ticket.create(req.body);
-//   res.json({ ticket: ticket.toObject({ getters: true }) });
-// });
-
 // THIS WORKS AND THE ID ISSUE WAS WRAPPED UP, I THINK, WITH THE PROBLEM OF ME ACTUALLY TRYING TO GET THE PROJECT ID INSTEAD OF THE TICKET ID IN FIND TICKET BY ID
 const createTicket = asyncWrapper(async (req, res, next) => {
   const projectId = req.params.pid;
