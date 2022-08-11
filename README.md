@@ -2,6 +2,8 @@
 Bug tracker backend using MERN stack
 This is my large project. It's purpose is to help a team track their tickets and even manage projects. It will have authorization of user, roles enforced from Administration and Developer. The purpose is to show my ability to connect a large amount of data and display it dynamically as well as allow basic CRUD operations with persisitance.
 
+I want to call it Bug_Bank
+
 ## Tech Stack
 Front-End: React
 Back-End: Node, Express, and Mongoose
