@@ -5,9 +5,9 @@ This is my large project. It's purpose is to help a team track their tickets and
 I want to call it Bug_Bank
 
 ## Tech Stack
-Front-End: React
-Back-End: Node, Express, and Mongoose
-Database: MongoDB
+<br>Front-End: React
+<br>Back-End: Node, Express, and Mongoose
+<br>Database: MongoDB
 
 ## Status
 Currently still a WIP. This is my largest project to date. As of 08/11/22, I'm still working on the backend routes and controllers but most of it is built. I want to put in a Kanban board, but we'll see.
