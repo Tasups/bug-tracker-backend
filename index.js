@@ -1,5 +1,6 @@
 const express = require('express')
 const app = express();
+const cors = require('cors')
 const projects = require('./routes/projects')
 const connectDB = require('./db/connect')
 require('dotenv').config()
@@ -10,6 +11,9 @@ const errorHandlerMiddleware = require('./middleware/error-handler')
 // EXPRESS TOOLS
 // so I'm supposed to use a static webpage here, however, I'd like to use a React SPA--may need to figure out how to do this
 app.use(express.json())
+
+// CORS
+app.use(cors())
 
 // MIDDLEWARE
 // this was causing constant errors on postman   app.use(notFound)
