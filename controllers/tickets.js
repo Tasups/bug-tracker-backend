@@ -17,10 +17,10 @@ const createTicket = asyncWrapper(async (req, res, next) => {
   const createdTicket = new Ticket({
     title, description, priority, author, status, type, eta, creator
   })
-  const user = await User.findById(creator)
-  if(!user) {
-    return next(createCustomError(`No user with id: ${creator}`, 404))
-  }
+  // const user = await User.findById(creator)
+  // if(!user) {
+  //   return next(createCustomError(`No user with id: ${creator}`, 404))
+  // }
   try {
     const sess = await mongoose.startSession()
     sess.startTransaction()
